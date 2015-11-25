@@ -3,6 +3,12 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'TestTask'
+    }
+}
+
 sourceCompatibility = 1.5
 
 repositories {

@@ -4,13 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- */
-public class Main {
+public class TestTask {
 
     private JFrame frame;
     private JTextField txtPath;
@@ -20,7 +16,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Main window = new Main();
+                    TestTask window = new TestTask();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -29,9 +25,15 @@ public class Main {
         });
     }
 
-    public Main(){
+    public TestTask(){
         setUpFrame();
     }
+
+    /**
+     * Метод setUpFrame реализует создание окна с текстом
+     * и двумя кнопками и обработчиков нажатий для этих
+     * кнопок.
+     */
 
     private void setUpFrame() {
         frame = new JFrame();
@@ -80,26 +82,25 @@ public class Main {
         });
     }
 
-    public void dataProcessing(String filename){
+    /**
+     * Метод dataProcessing реализует алгоритм обработки текстового файла
+     * расположенного в пути filename.
+     * Идея заключается в следующем:
+     * Используется коллекция для хранения идентификаторов сущностей.
+     * После каждого считывания строки из файла проверяется наличие
+     * реверсивной строки в коллекции. Если такова присутствует, производится
+     * соответствующий вывод. Если нет - добавляется соответствующий элемент
+     * в коллекцию.
+     * В качестве коллекции используется HashSet, так как зависимости сущностей
+     * можно не дублировать, и поиск, вставка и удаление
+     * составляют сложность O(1) (В самом худшем случае O(n))
+     * Общая сложность - O(n) (В самом худшем случае O(n^2)), где n - число строк в файле.
+     * @param filename Путь к файлу
+     */
+
+    private void dataProcessing(String filename){
 
         HashSet<String> essencesSet = new HashSet<>();
-
-        /*try(FileWriter writer = new FileWriter(filename, false)) {
-
-            Random random = new Random();
-
-            for(int i = 0; i < 10000; i++) {
-                int random1 = random.nextInt(100);
-                int random2 = random.nextInt(100);
-                writer.write(random1 + " " + random2);
-                if(i != 9999) {
-                    writer.write("\r\n");
-                }
-            }
-        }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }*/
 
         try {
             System.setIn(new FileInputStream(filename));
@@ -123,11 +124,11 @@ public class Main {
                         log.write(secondEssenceId + " " + firstEssenceId + " " + secondEssenceId + "\n");
                         log.flush();
                     }
-                    catch (Exception e) {
-                        e.printStackTrace();
+                    catch (Exception exception) {
+                        exception.printStackTrace();
                     }
 
-                    essencesSet.remove(String.valueOf(secondEssenceId + "," + firstEssenceId));
+                    //essencesSet.remove(String.valueOf(secondEssenceId + "," + firstEssenceId));
 
                 } else {
                     essencesSet.add(firstEssenceId + "," + secondEssenceId);
