@@ -11,7 +11,7 @@
 
 Вариант 2:
 
- * В командной строке перейти в каталог ..\Lognex\build\libs
+ * В командной строке перейти в каталог ..\Lognex-master\build\libs
  * Выполнить java -jar Lognex-1.0-SNAPSHOT.jar
  
 Вариант 3:
