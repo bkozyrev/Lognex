@@ -97,7 +97,7 @@ public class TestTask {
 
     private void dataProcessing(String filename){
 
-        HashSet<String> essencesSet = new HashSet<>();
+        HashSet<String> essencesSet = new HashSet<String>();
 
         try {
             System.setIn(new FileInputStream(filename));
