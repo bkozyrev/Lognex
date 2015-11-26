@@ -107,6 +107,7 @@ public class TestTask {
         }
 
         Scanner scanner = new Scanner(System.in);
+        BufferedWriter log = new BufferedWriter(new OutputStreamWriter(System.out));
 
         try {
             while (scanner.hasNextLine()) {
@@ -114,22 +115,15 @@ public class TestTask {
                         secondEssenceId = getNextIntFromScanner(scanner);
 
                 if(firstEssenceId == null || secondEssenceId == null){
+
                     scanner.nextLine();
                     continue;
                 }
 
                 if (essencesSet.contains(String.valueOf(secondEssenceId + "," + firstEssenceId))) {
 
-                    try {
-                        BufferedWriter log = new BufferedWriter(new OutputStreamWriter(System.out));
-
-                        log.write(secondEssenceId + " " + firstEssenceId + " " + secondEssenceId + "\n");
-                        log.flush();
-                    }
-                    catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-
+                    log.write(secondEssenceId + " " + firstEssenceId + " " + secondEssenceId + "\r\n");
+                    log.flush();
                 } else {
                     essencesSet.add(firstEssenceId + "," + secondEssenceId);
                 }
