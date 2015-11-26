@@ -12,4 +12,4 @@
 
 Вариант 2:
  * Перейти в директорию ..\Lognex\out\artifacts\Lognex_jar
- * Выполнить java -cp Lognex.jar TestTask
+ * Выполнить в командной строке java -cp Lognex.jar TestTask
