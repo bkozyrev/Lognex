@@ -4,6 +4,8 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 
+mainClassName = "TestTask"
+
 jar {
     manifest {
         attributes 'Main-Class': 'TestTask'
