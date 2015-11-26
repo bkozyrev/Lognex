@@ -30,9 +30,8 @@ public class TestTask {
     }
 
     /**
-     * Метод setUpFrame реализует создание окна с текстом
-     * и двумя кнопками и обработчиков нажатий для этих
-     * кнопок.
+     * setUpFrame method creates window with text and
+     * two buttons with listeners.
      */
 
     private void setUpFrame() {
@@ -83,19 +82,17 @@ public class TestTask {
     }
 
     /**
-     * Метод dataProcessing реализует алгоритм обработки текстового файла
-     * расположенного в пути filename.
-     * Идея заключается в следующем:
-     * Используется коллекция для хранения идентификаторов сущностей.
-     * После каждого считывания строки из файла проверяется наличие
-     * реверсивной строки в коллекции. Если такова присутствует, производится
-     * соответствующий вывод. Если нет - добавляется соответствующий элемент
-     * в коллекцию.
-     * В качестве коллекции используется HashSet, так как зависимости сущностей
-     * можно не дублировать, и поиск, вставка и удаление
-     * составляют сложность O(1) (В самом худшем случае O(n))
-     * Общая сложность - O(n) (В самом худшем случае O(n^2)), где n - число строк в файле.
-     * @param filename Путь к файлу
+     * dataProcessing method implements txt file reading algorithm located in
+     * filename folder.
+     * The main idea is following:
+     * Collection HashSet is being used for storing essences ids. Each line from
+     * file is checked for reverse line in the collection. In case of existence,
+     * appropriate output is made. Otherwise, corresponding element is placed
+     * in the collection.
+     * HashSet offers constant time performance for basic operators. (In the worst
+     * case O(n)). Total time performance is about O(n) (O(n^2) in really worst case),
+     * where n - number of lines in file.
+     * @param filename path to txt file
      */
 
     private void dataProcessing(String filename){
@@ -113,8 +110,13 @@ public class TestTask {
 
         try {
             while (scanner.hasNextLine()) {
-                Integer firstEssenceId = scanner.nextInt(),
-                        secondEssenceId = scanner.nextInt();
+                Integer firstEssenceId = getNextIntFromScanner(scanner),
+                        secondEssenceId = getNextIntFromScanner(scanner);
+
+                if(firstEssenceId == null || secondEssenceId == null){
+                    scanner.nextLine();
+                    continue;
+                }
 
                 if (essencesSet.contains(String.valueOf(secondEssenceId + "," + firstEssenceId))) {
 
@@ -128,8 +130,6 @@ public class TestTask {
                         exception.printStackTrace();
                     }
 
-                    //essencesSet.remove(String.valueOf(secondEssenceId + "," + firstEssenceId));
-
                 } else {
                     essencesSet.add(firstEssenceId + "," + secondEssenceId);
                 }
@@ -137,5 +137,12 @@ public class TestTask {
         }catch (Exception exception){
             System.out.println("Something went wrong. Check input data.");
         }
+    }
+
+    public Integer getNextIntFromScanner(Scanner scanner){
+        if(scanner.hasNextInt()){
+            return scanner.nextInt();
+        }
+        return null;
     }
 }

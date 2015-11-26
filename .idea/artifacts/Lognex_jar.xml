@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Lognex:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Lognex_jar</output-path>
-    <root id="archive" name="Lognex.jar">
-      <element id="module-output" name="Lognex" />
-    </root>
-  </artifact>
-</component>
